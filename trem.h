@@ -15,10 +15,7 @@ class Trem: public QThread{
 public:
     Trem(int,int,int);  //construtor
     void run();         //função a ser executada pela thread
-    int getX();         //Retorna coordenada X
-    int getY();         //Retorna coordenada Y
-    void run_or_stop(bool b); //Para um trem ou o faz começar a andar, com 1 para andar e 0 para parar
-    void setSpeed(int s); //Insere uma nova velocidade
+    void setSpeed(int s); //Insere uma nova velocidade]
 signals:
     void updateGUI(int,int,int);
 
@@ -27,7 +24,6 @@ private:
    int y;           //posição Y do trem na tela
    int ID;          //ID do trem
    int velocidade;  //Velocidade. É o tempo de dormir em milisegundos entre a mudança de posição do trem
-   bool can_go; //Se pode seguir ou não
 };
 
 #endif // TREM_H

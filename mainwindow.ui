@@ -68,7 +68,7 @@
       <x>440</x>
       <y>40</y>
       <width>21</width>
-      <height>221</height>
+      <height>201</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -225,9 +225,9 @@
    <widget class="QLabel" name="label_trilho8">
     <property name="geometry">
      <rect>
-      <x>460</x>
+      <x>340</x>
       <y>240</y>
-      <width>181</width>
+      <width>301</width>
       <height>21</height>
      </rect>
     </property>
@@ -259,7 +259,7 @@
      <rect>
       <x>260</x>
       <y>240</y>
-      <width>181</width>
+      <width>81</width>
       <height>21</height>
      </rect>
     </property>
