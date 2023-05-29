@@ -6,8 +6,8 @@
 
 QSemaphore sem0(1);
 QSemaphore sem1(1);
-QSemaphore sem2(1);
-QSemaphore sem3(1);
+QSemaphore sem2(2);
+QSemaphore sem3(2);
 QSemaphore sem4(1);
 QSemaphore sem5(1);
 QSemaphore sem6(1);
@@ -58,7 +58,7 @@ void Trem::run(){
             }
 
             // Região de risco 2
-            if(y == 240){
+            if(y == 220){
                 if(x == 440){
                     mutex2.lock();
                     sem2.acquire(1);
@@ -66,6 +66,20 @@ void Trem::run(){
                 if(x == 260){
                     sem2.release(1);
                     mutex2.unlock();
+                }
+            }
+
+            // Região de risco 3
+            if(x == 440){
+                if(y == 220){
+                    std::cout << "t1 locked it" << std::endl;
+                    mutex3.lock();
+                    sem3.acquire(1);
+                }
+                if(y == 260){
+                    std::cout << "t1 unlocked it" << std::endl;
+                    sem3.release(1);
+                    mutex3.unlock();
                 }
             }
 
@@ -94,16 +108,28 @@ void Trem::run(){
                 }
             }
 
+            // Região de risco 3
+            if(y == 240){
+                if(x == 650){
+                    std::cout << "locked" << std::endl;
+                    mutex3.lock();
+                    sem3.acquire(1);
+                }
+                if(x == 560){
+                    std::cout << "unlocked" << std::endl;
+                    sem3.release(1);
+                    mutex3.unlock();
+                }
+            }
+
 
             // Região de risco 4
             if(y <= 240){
                 if(y == 220 &&  x == 640){
-                    std::cout << "t2 locked it" << std::endl;
                     mutex4.lock();
                     sem4.acquire(1);
                 }
                 if(y == 240 && x == 540){
-                    std::cout << "t2 unlocked it" << std::endl;
                     sem4.release(1);
                     mutex4.unlock();
                 }
@@ -131,6 +157,18 @@ void Trem::run(){
                 if(x == 340){
                     sem1.release(1);
                     mutex1.unlock();
+                }
+            }
+
+            // Região de risco 2
+            if(y == 240){
+                if(x == 240){
+                    mutex2.lock();
+                    sem2.acquire(1);
+                }
+                if(x == 360){
+                    sem2.release(1);
+                    mutex2.unlock();
                 }
             }
 
@@ -169,6 +207,20 @@ void Trem::run(){
                 if(x == 540){
                     sem2.release(1);
                     mutex2.unlock();
+                }
+            }
+
+            // Região de risco 3
+            if(y == 240){
+                if(x == 440){
+                    std::cout << "t4 locked it" << std::endl;
+                    mutex3.lock();
+                    sem3.acquire(1);
+                }
+                if(x == 560){
+                    std::cout << "t4 unlocked it" << std::endl;
+                    sem3.release(1);
+                    mutex3.unlock();
                 }
             }
 
@@ -214,12 +266,10 @@ void Trem::run(){
             // Região de risco 4
             if(y == 260){
                 if(x == 540){
-                    std::cout << "t5 locked it" << std::endl;
                     mutex4.lock();
                     sem4.acquire(1);
                 }
                 if(x == 740){
-                    std::cout << "t5 unlocked it" << std::endl;
                     sem4.release(1);
                     mutex4.unlock();
                 }
