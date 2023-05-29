@@ -34,7 +34,7 @@ void Trem::run(){
         switch(ID){
         case 1: // Trem 1
             // Região de risco 0
-            if(x <= 440){
+            if(x <= 460){
                 if(x == 440 && y == 40){
                     //std::cout << "t1 locked it" << std::endl;
                     mutex0.lock();
@@ -53,7 +53,7 @@ void Trem::run(){
                     mutex1.lock();
                     sem1.acquire(1);
                 }
-                if(y == 240 && x == 240){
+                if(y == 240 && x == 260){
                     //std::cout << "t1 unlocked it" << std::endl;
                     sem1.release(1);
                     mutex1.unlock();
@@ -146,12 +146,10 @@ void Trem::run(){
             // Região de risco 1
             if(y == 240){
                 if(x == 220){
-                    //std::cout << "t3 locked it" << std::endl;
                     mutex1.lock();
                     sem1.acquire(1);
                 }
                 if(x == 340){
-                    //std::cout << "t3 unlocked it" << std::endl;
                     sem1.release(1);
                     mutex1.unlock();
                 }
@@ -167,21 +165,6 @@ void Trem::run(){
                 mutex5.unlock();
             }
 
-
-
-
-            /*
-            if(x <= 340){
-                if(x == 320 && y == 240){
-                    mutex5.lock();
-                    sem5.acquire(1);
-                }
-                if(x == 340 && y == 440){
-                    sem5.release(1);
-                    mutex5.unlock();
-                }
-            }
-            */
 
             if (x < 340 && y == 240)
                 x += 10;
