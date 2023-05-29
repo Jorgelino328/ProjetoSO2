@@ -119,8 +119,8 @@ void Trem::run(){
 
 
             // Região de risco 4
-            if(y <= 240){
-                if(y == 220 &&  x == 640){
+            if(y <= 260){
+                if(y == 250 &&  x == 640){
                     mutex4.lock();
                     sem4.acquire(1);
                 }
