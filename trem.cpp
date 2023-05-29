@@ -47,13 +47,13 @@ void Trem::run(){
                 }
             }
             // Região de risco 1
-            if(y == 240){
-                if(x == 360){
+            if(y <= 240){
+                if(y == 220 && x == 360){
                     //std::cout << "t1 locked it" << std::endl;
                     mutex1.lock();
                     sem1.acquire(1);
                 }
-                if(x == 240){
+                if(y == 240 && x == 240){
                     //std::cout << "t1 unlocked it" << std::endl;
                     sem1.release(1);
                     mutex1.unlock();
@@ -62,14 +62,14 @@ void Trem::run(){
 
 
             // Região de risco 2
-            if(y <= 240){
+            if(y >= 220){
                 if(y == 220 && x == 440){
-                    //std::cout << "t1 locked it" << std::endl;
+                    std::cout << "t1 locked it" << std::endl;
                     mutex2.lock();
                     sem2.acquire(1);
                 }
                 if(y == 240  && x == 260){
-                    //std::cout << "t1 unlocked it" << std::endl;
+                    std::cout << "t1 unlocked it" << std::endl;
                     sem2.release(1);
                     mutex2.unlock();
                 }
@@ -89,7 +89,7 @@ void Trem::run(){
         case 2: // Trem 2
             // Região de risco 0
             if(x >= 440){
-                if(x == 420 && y == 240){
+                if(x == 460 && y == 240){
                     //std::cout << "t2 locked it" << std::endl;
                     mutex0.lock();
                     sem0.acquire(1);
@@ -199,13 +199,13 @@ void Trem::run(){
 
             // Região de risco 2
             if(y >= 240){
-                if(y == 280 && x == 340){
-                    //std::cout << "t4 locked it" << std::endl;
+                if(y == 260 && x == 340){
+                    std::cout << "t4 locked it" << std::endl;
                     mutex2.lock();
                     sem2.acquire(1);
                 }
                 if(y == 240 && x == 460){
-                    //std::cout << "t4 unlocked it" << std::endl;
+                    std::cout << "t4 unlocked it" << std::endl;
                     sem2.release(1);
                     mutex2.unlock();
                 }
